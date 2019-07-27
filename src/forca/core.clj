@@ -18,7 +18,16 @@
 
 (defn acertou? [chute palavra] (.contains palavra chute))
 
+(defn imprime-forca [vidas palavra acertos]
+  (println "Vidas " vidas)
+  (doseq [letra (seq palavra)]
+    (if (contains? acertos (str letra))
+      (print letra " ")
+      (print "_ ")))
+  (println))
+
 (defn jogo [vidas palavra acertos]
+  (imprime-forca vidas palavra acertos)
   (cond 
     (= vidas 0) (perdeu)
     (acertou-a-palavra-toda? palavra acertos) (ganhou)
@@ -32,16 +41,16 @@
           (println "Letra Errada! Perdeu Vida.")
           (recur (dec vidas) palavra acertos))))))
 
-(defn soma [n]
-  (loop [contador 1 soma 0]
-    (if (> contador n) soma
-      (recur (inc contador) (+ soma contador)))))
-
 (defn -main
-"I don't do a whole lot ... yet."
-[& args]
-(println "Hello, World!"))
+  "I don't do a whole lot ... yet."
+  [& args]
+  (println "Hello, World!"))
 
+
+; (defn soma [n]
+;   (loop [contador 1 soma 0]
+;     (if (> contador n) soma
+;       (recur (inc contador) (+ soma contador)))))
 
 ; (defn fib [x]
 ;   (if (= x 0) 0
